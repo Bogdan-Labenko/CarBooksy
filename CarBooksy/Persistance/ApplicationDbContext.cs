@@ -1,0 +1,18 @@
+using CarBooksy.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
+
+namespace CarBooksy.Persistance;
+
+public class ApplicationDbContext(IConfiguration config) : DbContext
+{
+    public DbSet<Car> Cars { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Company> Companies { get; set; }
+
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql(new NpgsqlConnection(config["Database:ConnectionString"]));
+    }
+}
