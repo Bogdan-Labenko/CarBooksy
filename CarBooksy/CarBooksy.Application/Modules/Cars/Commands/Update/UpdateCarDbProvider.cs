@@ -1,7 +1,7 @@
 using CarBooksy.Domain;
 using CarBooksy.Persistance;
 
-namespace CarBooksy.Application.Modules.Cars.Commands;
+namespace CarBooksy.Application.Modules.Cars.Commands.Update;
 
 public interface IUpdateCarDbProvider
 {

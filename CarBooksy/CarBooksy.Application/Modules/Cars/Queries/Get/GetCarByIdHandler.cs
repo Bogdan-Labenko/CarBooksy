@@ -1,8 +1,6 @@
 using MediatR;
 
-namespace CarBooksy.Application.Modules.Cars.Queries;
-
-public record GetCarByIdQuery(Guid Id) : IRequest<CarDto?>;
+namespace CarBooksy.Application.Modules.Cars.Queries.Get;
 
 public class GetCarByIdHandler(IGetCarDbProvider provider) : IRequestHandler<GetCarByIdQuery, CarDto?>
 {

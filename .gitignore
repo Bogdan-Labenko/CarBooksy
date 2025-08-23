@@ -53,4 +53,5 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 
-/CarBooksy/Persistance/Migrations/
+/CarBooksy/CarBooksy.Persistance/Migrations/
+/CarBooksy/CarBooksy.Api/appsettings.Development.json

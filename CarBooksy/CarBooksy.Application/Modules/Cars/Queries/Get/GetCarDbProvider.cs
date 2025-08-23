@@ -1,13 +1,12 @@
 using CarBooksy.Persistance;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarBooksy.Application.Modules.Cars;
+namespace CarBooksy.Application.Modules.Cars.Queries;
 
 public interface IGetCarDbProvider
 {
     Task<CarDto?> Get(Guid id, CancellationToken cancellationToken);
 }
-
 public class GetCarDbProvider(ApplicationDbContext context) : IGetCarDbProvider
 {
     public async Task<CarDto?> Get(Guid id, CancellationToken cancellationToken)

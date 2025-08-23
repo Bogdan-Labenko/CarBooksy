@@ -1,5 +1,6 @@
 using CarBooksy.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Npgsql;
 
 namespace CarBooksy.Persistance;

@@ -1,10 +1,6 @@
-using CarBooksy.Domain.Entities;
 using MediatR;
 
-namespace CarBooksy.Application.Modules.Cars.Commands;
-
-public record DeleteCarCommand(Guid Id) : IRequest<bool>;
-
+namespace CarBooksy.Application.Modules.Cars.Commands.Delete;
 public class DeleteCarHandler(IDeleteCarDbProvider provider) : IRequestHandler<DeleteCarCommand, bool>
 {
     public async Task<bool> Handle(DeleteCarCommand request, CancellationToken cancellationToken)

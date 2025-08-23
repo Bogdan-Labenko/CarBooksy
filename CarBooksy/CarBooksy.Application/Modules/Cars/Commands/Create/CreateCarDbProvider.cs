@@ -2,18 +2,16 @@ using CarBooksy.Domain.Entities;
 using CarBooksy.Persistance;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarBooksy.Application.Modules.Cars.Commands;
-
+namespace CarBooksy.Application.Modules.Cars.Commands.Create;
 public interface ICreateCarDbProvider
 {
     Task<Guid> Create(Car car, CancellationToken cancellationToken);
 }
-
 public class CreateCarDbProvider(ApplicationDbContext context) : ICreateCarDbProvider
 {
     public async Task<Guid> Create(Car car, CancellationToken cancellationToken)
     {
-        var isExist = await context.Cars.AnyAsync(c => c.Id == car.Id);
+        var isExist = await context.Cars.AnyAsync(c => c.Id == car.Id, cancellationToken);
 
         if (isExist)
         {

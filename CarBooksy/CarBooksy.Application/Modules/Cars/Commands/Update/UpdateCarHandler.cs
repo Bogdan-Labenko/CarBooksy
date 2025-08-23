@@ -1,9 +1,6 @@
-using CarBooksy.Domain.Entities;
 using MediatR;
 
-namespace CarBooksy.Application.Modules.Cars.Commands;
-
-public record UpdateCarCommand(Guid Id, CarDto CarDto) : IRequest<Guid?>;
+namespace CarBooksy.Application.Modules.Cars.Commands.Update;
 
 public class UpdateCarHandler(IUpdateCarDbProvider provider) : IRequestHandler<UpdateCarCommand, Guid?>
 {

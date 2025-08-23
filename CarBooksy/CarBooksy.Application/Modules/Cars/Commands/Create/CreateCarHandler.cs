@@ -1,10 +1,7 @@
 using CarBooksy.Domain.Entities;
 using MediatR;
 
-namespace CarBooksy.Application.Modules.Cars.Commands;
-
-public record CreateCarCommand(string make, string model, int year, string vin, string plate, BodyType bodyType, CarStatus status)
-    : IRequest<Guid>;
+namespace CarBooksy.Application.Modules.Cars.Commands.Create;
 
 public class CreateCarHandler(ICreateCarDbProvider provider) : IRequestHandler<CreateCarCommand, Guid>
 {
