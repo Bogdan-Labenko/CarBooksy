@@ -18,9 +18,9 @@ public class CarsController : BaseController
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateCar(CreateCarCommand command)
+    public async Task<IActionResult> CreateCar(CreateCarCommand commandBase)
     {
-        var carId = await Sender.Send(command);
+        var carId = await Sender.Send(commandBase);
         return Ok(carId);
     }
 

@@ -1,4 +1,5 @@
 using CarBooksy.Domain.Entities;
+using CarBooksy.Shared.Models.Cars;
 
 namespace CarBooksy.Application.Modules.Cars;
 
