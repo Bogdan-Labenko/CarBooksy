@@ -1,17 +1,17 @@
 using CarBooksy.Persistance;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarBooksy.Application.Modules.Cars.Queries;
+namespace CarBooksy.Application.Modules.Cars.Queries.Get;
 
-public interface IGetCarDbProvider
+public interface IGetCarDataProvider
 {
     Task<CarDto?> Get(Guid id, CancellationToken cancellationToken);
 }
-public class GetCarDataProvider(ApplicationDbContext context) : IGetCarDbProvider
+public class GetCarDataProvider(ApplicationDbContext context) : IGetCarDataProvider
 {
     public async Task<CarDto?> Get(Guid id, CancellationToken cancellationToken)
     {
-        return await context.Cars
+        var a =  await context.Cars
             .Where(c => c.Id == id && c.IsDeleted == false)
             .Select(c => new CarDto
             {
@@ -24,5 +24,6 @@ public class GetCarDataProvider(ApplicationDbContext context) : IGetCarDbProvide
                 Status = c.Status
             })
             .FirstOrDefaultAsync(cancellationToken);
+        return a;
     }
 }

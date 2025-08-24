@@ -3,7 +3,7 @@ using MediatR;
 
 namespace CarBooksy.Application.Modules.Cars.Commands.Create;
 
-public class CreateCarHandler(ICreateCarDbProvider provider) : IRequestHandler<CreateCarCommand, Guid>
+public class CreateCarHandler(ICreateCarDataProvider provider) : IRequestHandler<CreateCarCommand, Guid>
 {
     public Task<Guid> Handle(CreateCarCommand request, CancellationToken cancellationToken)
     {

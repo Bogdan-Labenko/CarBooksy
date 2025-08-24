@@ -2,7 +2,7 @@ using MediatR;
 
 namespace CarBooksy.Application.Modules.Cars.Commands.Update;
 
-public class UpdateCarHandler(IUpdateCarDbProvider provider) : IRequestHandler<UpdateCarCommand, Guid?>
+public class UpdateCarHandler(IUpdateCarDataProvider provider) : IRequestHandler<UpdateCarCommand, Guid?>
 {
     public async Task<Guid?> Handle(UpdateCarCommand request, CancellationToken cancellationToken)
     {

@@ -3,11 +3,11 @@ using CarBooksy.Persistance;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarBooksy.Application.Modules.Cars.Commands.Create;
-public interface ICreateCarDbProvider
+public interface ICreateCarDataProvider
 {
     Task<Guid> Create(Car car, CancellationToken cancellationToken);
 }
-public class CreateCarDataProvider(ApplicationDbContext context) : ICreateCarDbProvider
+public class CreateCarDataProvider(ApplicationDbContext context) : ICreateCarDataProvider
 {
     public async Task<Guid> Create(Car car, CancellationToken cancellationToken)
     {

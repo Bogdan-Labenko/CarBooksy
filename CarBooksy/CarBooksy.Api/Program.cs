@@ -1,17 +1,14 @@
+using CarBooksy.Api;
 using CarBooksy.Api.Middlewares;
 using CarBooksy.Application;
 using CarBooksy.Persistance;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddControllers();
-
-builder.Services.AddApplicationServices();
-
-builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services
+    .AddApplicationServices()
+    .AddPersistanceServices()
+    .AddApiServices();
 
 var app = builder.Build();
 

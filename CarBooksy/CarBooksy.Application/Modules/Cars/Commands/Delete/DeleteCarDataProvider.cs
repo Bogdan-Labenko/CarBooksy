@@ -1,13 +1,13 @@
 using CarBooksy.Persistance;
 
-namespace CarBooksy.Application.Modules.Cars.Commands;
+namespace CarBooksy.Application.Modules.Cars.Commands.Delete;
 
-public interface IDeleteCarDbProvider
+public interface IDeleteCarDataProvider
 {
     public Task<bool> Delete(Guid id, CancellationToken cancellationToken);
 }
 
-public class DeleteCarDataProvider(ApplicationDbContext context) : IDeleteCarDbProvider
+public class DeleteCarDataProvider(ApplicationDbContext context) : IDeleteCarDataProvider
 {
     public async Task<bool> Delete(Guid id, CancellationToken cancellationToken)
     {

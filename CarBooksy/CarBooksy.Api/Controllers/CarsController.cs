@@ -12,34 +12,36 @@ namespace CarBooksy.Api.Controllers;
 [Route("api/[controller]")]
 public class CarsController : ControllerBase
 {
-    private readonly IMediator _mediator;
+    private readonly ISender _sender;
 
-    public CarsController(IMediator mediator)
+    public CarsController(IMediator sender)
     {
-        _mediator = mediator;
+        _sender = sender;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetCar(GetCarByIdQuery query)
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetCar(Guid id)
     {
-        return Ok(await _mediator.Send(query));
+        var car = await _sender.Send(new GetCarByIdQuery(id));
+        return Ok(car);
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateCar(CreateCarCommand command)
     {
-        return Ok(await _mediator.Send(command));
+        return Ok(await _sender.Send(command));
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateCar(UpdateCarCommand command)
     {
-        return Ok(await _mediator.Send(command));
+        await _sender.Send(command);
+        return NoContent();
     }
 
     [HttpDelete]
     public async Task<IActionResult> DeleteCar(DeleteCarCommand command)
     {
-        return Ok(await _mediator.Send(command));
+        return Ok(await _sender.Send(command));
     }
 }

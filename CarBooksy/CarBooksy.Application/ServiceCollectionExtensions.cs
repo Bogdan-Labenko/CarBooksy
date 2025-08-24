@@ -1,6 +1,5 @@
 using CarBooksy.Application.Modules.Cars.Commands.Create;
 using CarBooksy.Application.Modules.Cars.Queries.Get;
-using CarBooksy.Persistance;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CarBooksy.Application;
@@ -15,8 +14,8 @@ public static class ServiceCollectionExtensions
         });
         
         services.Scan(scan => scan
-            .FromAssemblies(typeof(ICreateCarDbProvider).Assembly)
-            .AddClasses(classes => classes.Where(type => type.Name.EndsWith("DbProvider")))
+            .FromAssemblies(typeof(ICreateCarDataProvider).Assembly)
+            .AddClasses(classes => classes.Where(type => type.Name.EndsWith("DataProvider")))
             .AsImplementedInterfaces()
             .WithScopedLifetime()
         );

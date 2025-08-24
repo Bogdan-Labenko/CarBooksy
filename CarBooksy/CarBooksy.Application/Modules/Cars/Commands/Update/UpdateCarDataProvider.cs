@@ -3,12 +3,12 @@ using CarBooksy.Persistance;
 
 namespace CarBooksy.Application.Modules.Cars.Commands.Update;
 
-public interface IUpdateCarDbProvider
+public interface IUpdateCarDataProvider
 {
     public Task<Result<Guid?>> Update(Guid id, CarDto carDto, CancellationToken cancellationToken);
 }
 
-public class UpdateCarDataProvider(ApplicationDbContext context) : IUpdateCarDbProvider
+public class UpdateCarDataProvider(ApplicationDbContext context) : IUpdateCarDataProvider
 {
     public async Task<Result<Guid?>> Update(Guid id, CarDto carDto, CancellationToken cancellationToken)
     {
