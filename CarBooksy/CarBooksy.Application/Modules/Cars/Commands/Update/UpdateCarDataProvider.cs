@@ -8,7 +8,7 @@ public interface IUpdateCarDbProvider
     public Task<Result<Guid?>> Update(Guid id, CarDto carDto, CancellationToken cancellationToken);
 }
 
-public class UpdateCarDbProvider(ApplicationDbContext context) : IUpdateCarDbProvider
+public class UpdateCarDataProvider(ApplicationDbContext context) : IUpdateCarDbProvider
 {
     public async Task<Result<Guid?>> Update(Guid id, CarDto carDto, CancellationToken cancellationToken)
     {

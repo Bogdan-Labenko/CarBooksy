@@ -7,7 +7,7 @@ public interface ICreateCarDbProvider
 {
     Task<Guid> Create(Car car, CancellationToken cancellationToken);
 }
-public class CreateCarDbProvider(ApplicationDbContext context) : ICreateCarDbProvider
+public class CreateCarDataProvider(ApplicationDbContext context) : ICreateCarDbProvider
 {
     public async Task<Guid> Create(Car car, CancellationToken cancellationToken)
     {

@@ -7,7 +7,7 @@ public interface IGetCarDbProvider
 {
     Task<CarDto?> Get(Guid id, CancellationToken cancellationToken);
 }
-public class GetCarDbProvider(ApplicationDbContext context) : IGetCarDbProvider
+public class GetCarDataProvider(ApplicationDbContext context) : IGetCarDbProvider
 {
     public async Task<CarDto?> Get(Guid id, CancellationToken cancellationToken)
     {

@@ -7,7 +7,7 @@ public interface IDeleteCarDbProvider
     public Task<bool> Delete(Guid id, CancellationToken cancellationToken);
 }
 
-public class DeleteCarDbProvider(ApplicationDbContext context) : IDeleteCarDbProvider
+public class DeleteCarDataProvider(ApplicationDbContext context) : IDeleteCarDbProvider
 {
     public async Task<bool> Delete(Guid id, CancellationToken cancellationToken)
     {
