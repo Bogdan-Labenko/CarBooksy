@@ -2,46 +2,39 @@ using CarBooksy.Application.Modules.Cars.Commands.Create;
 using CarBooksy.Application.Modules.Cars.Commands.Delete;
 using CarBooksy.Application.Modules.Cars.Commands.Update;
 using CarBooksy.Application.Modules.Cars.Queries.Get;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarBooksy.Api.Controllers;
 
-
 [ApiController]
 [Route("api/[controller]")]
-public class CarsController : ControllerBase
+public class CarsController : BaseController
 {
-    private readonly ISender _sender;
-
-    public CarsController(IMediator sender)
-    {
-        _sender = sender;
-    }
-
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetCar(Guid id)
     {
-        var car = await _sender.Send(new GetCarByIdQuery(id));
+        var car = await Sender.Send(new GetCarByIdQuery(id));
         return Ok(car);
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateCar(CreateCarCommand command)
     {
-        return Ok(await _sender.Send(command));
+        var carId = await Sender.Send(command);
+        return Ok(carId);
     }
 
-    [HttpPut]
-    public async Task<IActionResult> UpdateCar(UpdateCarCommand command)
+    [HttpPut("id")]
+    public async Task<IActionResult> UpdateCar([FromRoute] Guid id, [FromBody] UpdateCarCommand command)
     {
-        await _sender.Send(command);
+        await Sender.Send(command);
         return NoContent();
     }
 
-    [HttpDelete]
-    public async Task<IActionResult> DeleteCar(DeleteCarCommand command)
+    [HttpDelete("id")]
+    public async Task<IActionResult> DeleteCar([FromRoute] Guid id)
     {
-        return Ok(await _sender.Send(command));
+        await Sender.Send(new DeleteCarCommand(id));
+        return NoContent();
     }
 }
