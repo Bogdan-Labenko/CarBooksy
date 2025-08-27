@@ -5,23 +5,18 @@ namespace CarBooksy.Application.Modules.Cars.Commands.Create;
 
 public class CreateCarHandler(ICreateCarDataProvider provider) : IRequestHandler<CreateCarCommand, Guid>
 {
-    public Task<Guid> Handle(CreateCarCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateCarCommand commandBase, CancellationToken cancellationToken)
     {
-        var carResult = Car.Create(
-            request.make,
-            request.model,
-            request.year,
-            request.vin,
-            request.plate,
-            request.bodyType,
-            request.status
-        );
+        var carResult = Car.Create(commandBase);
 
         if (!carResult.IsSuccess)
         {
-            return null;
+            throw new Exception("Car creation failed");
         }
 
-        return provider.Create(carResult.Value, cancellationToken);
+        await provider.AddCarAsync(carResult.Value!, cancellationToken);
+        await provider.SaveChangesAsync(cancellationToken);
+
+        return carResult.Value!.Id;
     }
 }
