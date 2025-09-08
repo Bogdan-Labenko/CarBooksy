@@ -12,7 +12,7 @@ namespace CarBooksy.Api.Controllers;
 [Route("api/[controller]")]
 public class CarsController : BaseController
 {
-    [FromServices] protected ISender Sender { get; init; }
+    private ISender Sender { get; init; }
 
     public CarsController(ISender sender)
     {

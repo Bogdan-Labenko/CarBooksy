@@ -7,16 +7,11 @@ public class CreateCarHandler(ICreateCarDataProvider provider) : IRequestHandler
 {
     public async Task<Guid> Handle(CreateCarCommand commandBase, CancellationToken cancellationToken)
     {
-        var carResult = Car.Create(commandBase);
+        var car = Car.Create(commandBase);
 
-        if (!carResult.IsSuccess)
-        {
-            throw new Exception(carResult.Error);
-        }
-
-        await provider.AddCarAsync(carResult.Value!, cancellationToken);
+        await provider.AddCarAsync(car, cancellationToken);
         await provider.SaveChangesAsync(cancellationToken);
 
-        return carResult.Value!.Id;
+        return car.Id;
     }
 }

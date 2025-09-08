@@ -18,13 +18,8 @@ public class UpdateCarDataProvider(ApplicationDbContext context) : IUpdateCarDat
         {
             throw new Exception("Car not found");
         }
-
-        var result = car.Update(commandBase);
-
-        if (!result.IsSuccess)
-        {
-            throw new Exception(result.Error);
-        }
+        
+        car.Update(commandBase);
 
         await context.SaveChangesAsync(cancellationToken);
     }

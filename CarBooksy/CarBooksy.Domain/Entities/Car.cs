@@ -12,9 +12,9 @@ public class Car : BaseEntity
     public BodyType BodyType { get; set; }
     public CarStatus Status { get; set; }
     
-    public static Result<Car> Create(CreateCarCommandBase commandBase)
+    public static Car Create(CreateCarCommandBase commandBase)
     {
-        if (string.IsNullOrWhiteSpace(commandBase.Make))
+        /*if (string.IsNullOrWhiteSpace(commandBase.Make))
             return new Result<Car>(null, false, "Make is required");
 
         if (commandBase.ProductionYear < 1950 || commandBase.ProductionYear > DateTime.UtcNow.Year + 1)
@@ -24,9 +24,9 @@ public class Car : BaseEntity
             return new Result<Car>(null, false, "VIN must be 17 characters");
 
         if (string.IsNullOrWhiteSpace(commandBase.PlateNumber))
-            return new Result<Car>(null, false, "Plate number is required");
+            return new Result<Car>(null, false, "Plate number is required");*/
 
-        return new Result<Car>(new Car
+        return new Car
         {
             Id = Guid.CreateVersion7(),
             IsDeleted = false,
@@ -37,12 +37,12 @@ public class Car : BaseEntity
             PlateNumber = commandBase.PlateNumber,
             BodyType = commandBase.BodyType,
             Status = commandBase.Status
-        }, true, null);
+        };
     }
 
-    public Result Update(UpdateCarCommandBase commandBase)
+    public void Update(UpdateCarCommandBase commandBase)
     {
-        if (string.IsNullOrWhiteSpace(commandBase.Make))
+        /*if (string.IsNullOrWhiteSpace(commandBase.Make))
             return new Result( false, "Make is required");
 
         if (commandBase.ProductionYear < 1950 || commandBase.ProductionYear > DateTime.UtcNow.Year + 1)
@@ -52,7 +52,7 @@ public class Car : BaseEntity
             return new Result(false, "VIN must be 17 characters");
 
         if (string.IsNullOrWhiteSpace(commandBase.PlateNumber))
-            return new Result(false, "Plate number is required");
+            return new Result(false, "Plate number is required");*/
         
         Id = commandBase.Id;
         IsDeleted = false;
@@ -63,7 +63,6 @@ public class Car : BaseEntity
         PlateNumber = commandBase.PlateNumber; 
         BodyType = commandBase.BodyType; 
         Status = commandBase.Status;
-        return new Result(true, null);
     }
     private Car() {}
 }
