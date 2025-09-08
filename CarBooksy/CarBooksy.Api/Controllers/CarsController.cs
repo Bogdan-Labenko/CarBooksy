@@ -2,6 +2,7 @@ using CarBooksy.Application.Modules.Cars.Commands.Create;
 using CarBooksy.Application.Modules.Cars.Commands.Delete;
 using CarBooksy.Application.Modules.Cars.Commands.Update;
 using CarBooksy.Application.Modules.Cars.Queries.Get;
+using CarBooksy.Application.Modules.Cars.Queries.GetMany;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,13 @@ public class CarsController : BaseController
     public async Task<IActionResult> GetCar([FromRoute]Guid id)
     {
         var car = await Sender.Send(new GetCarByIdQuery(id));
+        return Ok(car);
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetCars([FromQuery]GetCarsQuery query)
+    {
+        var car = await Sender.Send(query);
         return Ok(car);
     }
 

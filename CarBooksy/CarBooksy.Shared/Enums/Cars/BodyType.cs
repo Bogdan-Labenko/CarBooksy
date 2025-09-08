@@ -2,7 +2,7 @@ namespace CarBooksy.Shared.Models.Cars;
 
 public enum BodyType
 {
-    Sedan,
+    Sedan = 0,
     Coupe,
     Hatchback,
     SUV,

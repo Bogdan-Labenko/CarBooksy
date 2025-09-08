@@ -11,7 +11,7 @@ public class CreateCarHandler(ICreateCarDataProvider provider) : IRequestHandler
 
         if (!carResult.IsSuccess)
         {
-            throw new Exception("Car creation failed");
+            throw new Exception(carResult.Error);
         }
 
         await provider.AddCarAsync(carResult.Value!, cancellationToken);
