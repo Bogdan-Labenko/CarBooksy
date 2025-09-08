@@ -7,8 +7,8 @@ namespace CarBooksy.Api.Controllers;
 [Route("api/[controller]")]
 public class BaseController : ControllerBase
 {
-    [FromServices] 
-    protected ISender Sender { get; init; }
+    //[FromServices] 
+    //protected ISender Sender { get; init; }
     
     protected string GetCreatedRoute<T>(string controller, T id)
     {

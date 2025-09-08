@@ -1,32 +1,31 @@
 using CarBooksy.Domain;
 using CarBooksy.Persistance;
+using CarBooksy.Shared.Models.Cars;
 
 namespace CarBooksy.Application.Modules.Cars.Commands.Update;
 
 public interface IUpdateCarDataProvider
 {
-    public Task<Result<Guid?>> Update(Guid id, CarDto carDto, CancellationToken cancellationToken);
+    public Task Update(UpdateCarCommandBase commandBase, CancellationToken cancellationToken);
 }
 
 public class UpdateCarDataProvider(ApplicationDbContext context) : IUpdateCarDataProvider
 {
-    public async Task<Result<Guid?>> Update(Guid id, CarDto carDto, CancellationToken cancellationToken)
+    public async Task Update(UpdateCarCommandBase commandBase, CancellationToken cancellationToken)
     {
-        var car = await context.Cars.FindAsync(id);
+        var car = await context.Cars.FindAsync(commandBase.Id);
         if (car is null)
         {
-            return null;
+            throw new Exception("Car not found");
         }
 
-        car.Make = carDto.Make;
-        car.Model = carDto.Model;
-        car.ProductionYear = carDto.ProductionYear;
-        car.PlateNumber = carDto.PlateNumber;
-        car.VinCode = carDto.VinCode;
-        car.Status = carDto.Status;
-        car.BodyType = carDto.BodyType;
+        var result = car.Update(commandBase);
+
+        if (!result.IsSuccess)
+        {
+            throw new Exception(result.Error);
+        }
 
         await context.SaveChangesAsync(cancellationToken);
-        return new Result<Guid?>(id, true, null);
     }
 }
