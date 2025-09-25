@@ -1,7 +1,10 @@
 using CarBooksy.Domain.Entities;
+using CarBooksy.Shared.Models.Cars;
 using MediatR;
 
 namespace CarBooksy.Application.Modules.Cars.Commands.Create;
+
+public class CreateCarCommand : CreateCarCommandBase, IRequest<Guid>;
 
 public class CreateCarHandler(ICreateCarDataProvider provider) : IRequestHandler<CreateCarCommand, Guid>
 {

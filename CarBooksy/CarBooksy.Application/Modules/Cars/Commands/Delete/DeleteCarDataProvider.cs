@@ -4,21 +4,20 @@ namespace CarBooksy.Application.Modules.Cars.Commands.Delete;
 
 public interface IDeleteCarDataProvider
 {
-    public Task<bool> Delete(Guid id, CancellationToken cancellationToken);
+    public Task Delete(Guid id, CancellationToken cancellationToken);
 }
 
 public class DeleteCarDataProvider(ApplicationDbContext context) : IDeleteCarDataProvider
 {
-    public async Task<bool> Delete(Guid id, CancellationToken cancellationToken)
+    public async Task Delete(Guid id, CancellationToken cancellationToken)
     {
         var car = await context.Cars.FindAsync(id);
         if (car is null)
         {
-            return false;
+            throw new KeyNotFoundException($"Car with id {id} not found");
         }
-
+        
         car.IsDeleted = true;
         await context.SaveChangesAsync(cancellationToken);
-        return true;
     }
 }

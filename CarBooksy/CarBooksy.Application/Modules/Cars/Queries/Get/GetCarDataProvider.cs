@@ -5,15 +5,14 @@ namespace CarBooksy.Application.Modules.Cars.Queries.Get;
 
 public interface IGetCarDataProvider
 {
-    Task<CarDto?> Get(Guid id, CancellationToken cancellationToken);
+    Task<GetCarByIdQueryResponse?> Get(Guid id, CancellationToken cancellationToken);
 }
 public class GetCarDataProvider(ApplicationDbContext context) : IGetCarDataProvider
 {
-    public async Task<CarDto?> Get(Guid id, CancellationToken cancellationToken)
-    {
-        var a =  await context.Cars
+    public async Task<GetCarByIdQueryResponse?> Get(Guid id, CancellationToken cancellationToken) => 
+        await context.Cars
             .Where(c => c.Id == id && c.IsDeleted == false)
-            .Select(c => new CarDto
+            .Select(c => new GetCarByIdQueryResponse
             {
                 Make = c.Make,
                 Model = c.Model,
@@ -24,6 +23,4 @@ public class GetCarDataProvider(ApplicationDbContext context) : IGetCarDataProvi
                 Status = c.Status
             })
             .FirstOrDefaultAsync(cancellationToken);
-        return a;
-    }
 }
