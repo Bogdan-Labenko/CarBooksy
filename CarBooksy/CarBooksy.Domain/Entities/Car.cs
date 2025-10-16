@@ -1,3 +1,4 @@
+using CarBooksy.Shared.Enums.Cars;
 using CarBooksy.Shared.Models.Cars;
 
 namespace CarBooksy.Domain.Entities;

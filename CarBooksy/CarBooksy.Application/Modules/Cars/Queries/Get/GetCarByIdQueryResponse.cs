@@ -1,4 +1,4 @@
-using CarBooksy.Shared.Models.Cars;
+using CarBooksy.Shared.Enums.Cars;
 
 namespace CarBooksy.Application.Modules.Cars.Queries.Get;
 

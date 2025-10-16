@@ -1,3 +1,5 @@
+using CarBooksy.Shared.Enums.Cars;
+
 namespace CarBooksy.Shared.Models.Cars;
 
 public class UpdateCarCommandBase
