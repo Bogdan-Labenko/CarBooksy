@@ -12,6 +12,7 @@ public class Car : BaseEntity
     public string PlateNumber { get; set; }
     public BodyType BodyType { get; set; }
     public CarStatus Status { get; set; }
+    public Guid? CompanyId { get; set; }
     
     public static Car Create(CreateCarCommandBase commandBase)
     {

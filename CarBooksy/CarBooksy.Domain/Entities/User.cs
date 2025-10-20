@@ -9,7 +9,8 @@ public class User : BaseEntity
     public string LastName { get; set; }
     public ContactInfo ContactInfo { get; set; }
     public DateOnly Birthday { get; set; }
-
+    public Guid? CompanyId { get; set; }
+    
     public static User Create(CreateUserCommandBase commandBase)
     {
         return new User
@@ -30,4 +31,6 @@ public class User : BaseEntity
         ContactInfo = commandBase.ContactInfo;
         Birthday = commandBase.Birthday;
     }
+
+    private User() {}
 }
