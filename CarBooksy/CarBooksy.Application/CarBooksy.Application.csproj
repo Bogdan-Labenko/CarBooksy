@@ -6,10 +6,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
     <PackageReference Include="MediatR" Version="13.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     <PackageReference Include="Scrutor" Version="6.1.0" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\Companies\Commands\" />
+    <Folder Include="Modules\Companies\Queries\" />
+    <Folder Include="Modules\Users\Queries\" />
   </ItemGroup>
 
   <PropertyGroup>

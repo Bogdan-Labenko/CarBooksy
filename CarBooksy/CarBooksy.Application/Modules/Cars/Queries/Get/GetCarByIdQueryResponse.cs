@@ -1,9 +1,8 @@
-using CarBooksy.Domain.Entities;
-using CarBooksy.Shared.Models.Cars;
+using CarBooksy.Shared.Enums.Cars;
 
-namespace CarBooksy.Application.Modules.Cars;
+namespace CarBooksy.Application.Modules.Cars.Queries.Get;
 
-public class CarDto
+public class GetCarByIdQueryResponse
 {
     public string Make { get; set; }
     public string Model { get; set; }
@@ -12,5 +11,4 @@ public class CarDto
     public string PlateNumber { get; set; }
     public BodyType BodyType { get; set; }
     public CarStatus Status { get; set; }
-    
 }

@@ -16,4 +16,10 @@ public class ApplicationDbContext(IConfiguration config) : DbContext
     {
         optionsBuilder.UseNpgsql(new NpgsqlConnection(config["Database:ConnectionString"]));
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+    }
 }

@@ -5,6 +5,7 @@ using CarBooksy.Application.Modules.Cars.Queries.Get;
 using CarBooksy.Application.Modules.Cars.Queries.GetMany;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace CarBooksy.Api.Controllers;
 
@@ -26,11 +27,12 @@ public class CarsController : BaseController
         return Ok(car);
     }
     
+    [EnableQuery]
     [HttpGet]
-    public async Task<IActionResult> GetCars([FromQuery]GetCarsQuery query)
+    public async Task<IActionResult> GetCars()
     {
-        var car = await Sender.Send(query);
-        return Ok(car);
+        var cars = await Sender.Send(new GetAllCarsQuery());
+        return Ok(cars);
     }
 
     [HttpPost]

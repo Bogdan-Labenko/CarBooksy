@@ -1,10 +1,13 @@
 using MediatR;
 
 namespace CarBooksy.Application.Modules.Cars.Commands.Delete;
-public class DeleteCarHandler(IDeleteCarDataProvider provider) : IRequestHandler<DeleteCarCommand, bool>
+
+public record DeleteCarCommand(Guid Id) : IRequest;
+
+public class DeleteCarHandler(IDeleteCarDataProvider provider) : IRequestHandler<DeleteCarCommand>
 {
-    public async Task<bool> Handle(DeleteCarCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteCarCommand request, CancellationToken cancellationToken)
     {
-        return await provider.Delete(request.Id, cancellationToken);
+        await provider.Delete(request.Id, cancellationToken);
     }
 }

@@ -1,3 +1,7 @@
+using CarBooksy.Domain.Entities;
+using Microsoft.AspNetCore.OData;
+using Microsoft.OData.ModelBuilder;
+
 namespace CarBooksy.Api;
 
 internal static class ServiceCollectionExtensions
@@ -6,8 +10,9 @@ internal static class ServiceCollectionExtensions
     {
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
-
-        services.AddControllers();
+        
+        services.AddControllers().AddOData(opt =>
+            opt.Select().Filter().OrderBy().Count().Expand());
 
         return services;
     }

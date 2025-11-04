@@ -1,4 +1,4 @@
-namespace CarBooksy.Shared.Models.Cars;
+namespace CarBooksy.Shared.Enums.Cars;
 
 public enum BodyType
 {

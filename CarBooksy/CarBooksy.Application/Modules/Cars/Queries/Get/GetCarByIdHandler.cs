@@ -2,8 +2,8 @@ using MediatR;
 
 namespace CarBooksy.Application.Modules.Cars.Queries.Get;
 
-public class GetCarByIdHandler(IGetCarDataProvider provider) : IRequestHandler<GetCarByIdQuery, CarDto?>
+public class GetCarByIdHandler(IGetCarDataProvider provider) : IRequestHandler<GetCarByIdQuery, GetCarByIdQueryResponse?>
 {
-    public Task<CarDto?> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
+    public Task<GetCarByIdQueryResponse?> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
         => provider.Get(request.Id, cancellationToken);
 }

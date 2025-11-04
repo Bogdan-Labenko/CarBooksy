@@ -1,6 +1,9 @@
+using CarBooksy.Application.Common;
 using CarBooksy.Application.Modules.Cars.Commands.Create;
 using CarBooksy.Application.Modules.Cars.Queries.Get;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using MediatR;
 
 namespace CarBooksy.Application;
 
@@ -18,6 +21,13 @@ public static class ServiceCollectionExtensions
             .AddClasses(classes => classes.Where(type => type.Name.EndsWith("DataProvider")))
             .AsImplementedInterfaces()
             .WithScopedLifetime()
+        );
+        
+        services.AddValidatorsFromAssembly(typeof(GetCarByIdHandler).Assembly);
+        
+        services.AddTransient(
+            typeof(IPipelineBehavior<,>), 
+            typeof(ValidationBehavior<,>)
         );
 
         return services;
