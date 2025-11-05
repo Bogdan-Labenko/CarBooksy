@@ -1,4 +1,4 @@
-using CarBooksy.Shared.Models;
+using CarBooksy.Shared.Models.ContactInfos;
 using CarBooksy.Shared.Models.Users;
 
 namespace CarBooksy.Domain.Entities;

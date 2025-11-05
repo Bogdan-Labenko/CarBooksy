@@ -11,7 +11,7 @@ public class CreateUserCommandHandler(ICreateUserDataProvider provider) : IReque
     public async Task<Guid> Handle(CreateUserCommand command, CancellationToken cancellationToken)
     {
         var user = User.Create(command);
-        var id = await provider.Add(user, cancellationToken);
-        return id;
+        await provider.Add(user, cancellationToken);
+        return user.Id;
     }
 }

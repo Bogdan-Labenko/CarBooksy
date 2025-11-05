@@ -1,7 +1,7 @@
 using FluentValidation;
 using MediatR;
 
-namespace CarBooksy.Application.Common;
+namespace CarBooksy.Application.Common.Validation;
 
 public class ValidationBehavior<TRequest, TResponse> 
     : IPipelineBehavior<TRequest, TResponse>

@@ -9,6 +9,8 @@ public class CarConfiguration : IEntityTypeConfiguration<Car>
 {
     public void Configure(EntityTypeBuilder<Car> builder)
     {
+        builder.Property(c => c.Id)
+            .ValueGeneratedNever();
         builder.Property(c => c.Make)
             .HasMaxLength(CarConstraints.MakeMaxLength)
             .IsRequired();

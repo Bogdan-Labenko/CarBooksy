@@ -6,7 +6,7 @@ namespace CarBooksy.Application.Modules.Cars.Commands.Update;
 
 public interface IUpdateCarDataProvider
 {
-    public Task Update(UpdateCarCommandBase commandBase, CancellationToken cancellationToken);
+    Task Update(UpdateCarCommandBase commandBase, CancellationToken cancellationToken);
 }
 
 public class UpdateCarDataProvider(ApplicationDbContext context) : IUpdateCarDataProvider

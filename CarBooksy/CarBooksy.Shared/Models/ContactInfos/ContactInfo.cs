@@ -1,4 +1,4 @@
-namespace CarBooksy.Shared.Models;
+namespace CarBooksy.Shared.Models.ContactInfos;
 
 public sealed class ContactInfo
 {
