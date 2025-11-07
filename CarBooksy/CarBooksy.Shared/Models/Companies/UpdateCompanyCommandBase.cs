@@ -11,6 +11,4 @@ public class UpdateCompanyCommandBase
     public readonly int MaxLengthName = 100;
     public Address Address { get; set; }
     public ContactInfo ContactInfo { get; set; }
-    public string NIP { get; set; }
-    public readonly int NIPLength = 10;
 }

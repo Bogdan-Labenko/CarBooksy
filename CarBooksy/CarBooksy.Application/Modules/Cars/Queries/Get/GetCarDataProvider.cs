@@ -3,14 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarBooksy.Application.Modules.Cars.Queries.Get;
 
-public interface IGetCarDataProvider
+internal interface IGetCarDataProvider
 {
     Task<GetCarByIdQueryResponse?> Get(Guid id, CancellationToken cancellationToken);
 }
-public class GetCarDataProvider(ApplicationDbContext context) : IGetCarDataProvider
+internal class GetCarDataProvider(ApplicationDbContext context) : IGetCarDataProvider
 {
     public async Task<GetCarByIdQueryResponse?> Get(Guid id, CancellationToken cancellationToken) => 
         await context.Cars
+            .AsNoTracking()
             .Where(c => c.Id == id && c.IsDeleted == false)
             .Select(c => new GetCarByIdQueryResponse
             {

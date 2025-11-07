@@ -2,12 +2,12 @@ using CarBooksy.Persistance;
 
 namespace CarBooksy.Application.Modules.Cars.Commands.Delete;
 
-public interface IDeleteCarDataProvider
+internal interface IDeleteCarDataProvider
 {
     public Task Delete(Guid id, CancellationToken cancellationToken);
 }
 
-public class DeleteCarDataProvider(ApplicationDbContext context) : IDeleteCarDataProvider
+internal class DeleteCarDataProvider(ApplicationDbContext context) : IDeleteCarDataProvider
 {
     public async Task Delete(Guid id, CancellationToken cancellationToken)
     {
@@ -17,7 +17,7 @@ public class DeleteCarDataProvider(ApplicationDbContext context) : IDeleteCarDat
             throw new KeyNotFoundException($"Car with id {id} not found");
         }
         
-        car.IsDeleted = true;
+        car.Delete();
         await context.SaveChangesAsync(cancellationToken);
     }
 }

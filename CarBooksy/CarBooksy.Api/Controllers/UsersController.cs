@@ -12,26 +12,20 @@ namespace CarBooksy.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UsersController : BaseController
+public class UsersController(ISender sender) : BaseController
 {
-    private ISender Sender { get; init; }
-    
-    public UsersController(ISender sender)
-    {
-        Sender = sender;
-    }
     
     [HttpPost]
     public async Task<IActionResult> CreateUser([FromBody]CreateUserCommand command)
     {
-        var userId = await Sender.Send(command);
+        var userId = await sender.Send(command);
         return Ok(userId);
     }
 
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetUser([FromRoute] Guid id)
     {
-        var user = await Sender.Send(new GetUserByIdQuery(id));
+        var user = await sender.Send(new GetUserByIdQuery(id));
         return Ok(user);
     }
 
@@ -39,21 +33,21 @@ public class UsersController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetUsers()
     {
-        var users = await Sender.Send(new GetAllUsersQuery());
+        var users = await sender.Send(new GetAllUsersQuery());
         return Ok(users);
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand command)
     {
-        await Sender.Send(command);
+        await sender.Send(command);
         return NoContent();
     }
 
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
     {
-        await Sender.Send(new DeleteUserCommand(id));
+        await sender.Send(new DeleteUserCommand(id));
         return NoContent();
     }
 }

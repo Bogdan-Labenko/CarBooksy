@@ -2,12 +2,12 @@ using CarBooksy.Persistance;
 
 namespace CarBooksy.Application.Modules.Users.Commands.Delete;
 
-public interface IDeleteUserDataProvider
+internal interface IDeleteUserDataProvider
 {
     Task Delete(Guid id);
 }
 
-public class DeleteUserDataProvider(ApplicationDbContext context) : IDeleteUserDataProvider
+internal class DeleteUserDataProvider(ApplicationDbContext context) : IDeleteUserDataProvider
 {
     public async Task Delete(Guid id)
     {
@@ -17,7 +17,7 @@ public class DeleteUserDataProvider(ApplicationDbContext context) : IDeleteUserD
             throw new Exception("User not found");
         }
 
-        user.IsDeleted = true;
+        user.Delete();
         await context.SaveChangesAsync();
     }
 }

@@ -11,19 +11,13 @@ namespace CarBooksy.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CarsController : BaseController
+public class CarsController(ISender sender) : BaseController
 {
-    private ISender Sender { get; init; }
-
-    public CarsController(ISender sender)
-    {
-        Sender = sender;
-    }
     
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetCar([FromRoute]Guid id)
     {
-        var car = await Sender.Send(new GetCarByIdQuery(id));
+        var car = await sender.Send(new GetCarByIdQuery(id));
         return Ok(car);
     }
     
@@ -31,28 +25,28 @@ public class CarsController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetCars()
     {
-        var cars = await Sender.Send(new GetAllCarsQuery());
+        var cars = await sender.Send(new GetAllCarsQuery());
         return Ok(cars);
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateCar([FromBody]CreateCarCommand commandBase)
     {
-        var carId = await Sender.Send(commandBase);
+        var carId = await sender.Send(commandBase);
         return Ok(carId);
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateCar([FromBody] UpdateCarCommand command)
     {
-        await Sender.Send(command);
+        await sender.Send(command);
         return NoContent();
     }
 
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteCar([FromRoute] Guid id)
     {
-        await Sender.Send(new DeleteCarCommand(id));
+        await sender.Send(new DeleteCarCommand(id));
         return NoContent();
     }
 }

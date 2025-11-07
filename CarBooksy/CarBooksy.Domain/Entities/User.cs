@@ -5,12 +5,12 @@ namespace CarBooksy.Domain.Entities;
 
 public class User : BaseEntity
 {
-    public string Name { get; set; }
-    public string LastName { get; set; }
-    public ContactInfo ContactInfo { get; set; }
-    public DateOnly Birthday { get; set; }
-    public Guid? CompanyId { get; set; }
-    
+    public string Name { get; private set; }
+    public string LastName { get; private set; }
+    public ContactInfo ContactInfo { get; private set; }
+    public DateOnly Birthday { get; private set; }
+    public Guid? CompanyId { get; private set; }
+    private User() {}
     public static User Create(CreateUserCommandBase commandBase)
     {
         return new User
@@ -23,7 +23,6 @@ public class User : BaseEntity
             Birthday = commandBase.Birthday
         };
     }
-
     public void Update(UpdateUserCommandBase commandBase)
     {
         Name = commandBase.Name;
@@ -31,6 +30,5 @@ public class User : BaseEntity
         ContactInfo = commandBase.ContactInfo;
         Birthday = commandBase.Birthday;
     }
-
-    private User() {}
+    public void Delete() { IsDeleted = true; }
 }

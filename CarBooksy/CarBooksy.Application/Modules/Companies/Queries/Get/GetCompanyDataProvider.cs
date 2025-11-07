@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarBooksy.Application.Modules.Companies.Queries.Get;
 
-public interface IGetCompanyDataProvider
+internal interface IGetCompanyDataProvider
 {
     Task<GetCompanyByIdResponse?> Get(Guid id, CancellationToken cancellationToken);
 }
 
-public class GetCompanyDataProvider(ApplicationDbContext context) : IGetCompanyDataProvider
+internal class GetCompanyDataProvider(ApplicationDbContext context) : IGetCompanyDataProvider
 {
     public async Task<GetCompanyByIdResponse?> Get(Guid id, CancellationToken cancellationToken)
         => await context.Companies

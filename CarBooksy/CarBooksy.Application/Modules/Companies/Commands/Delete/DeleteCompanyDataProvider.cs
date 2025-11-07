@@ -2,12 +2,12 @@ using CarBooksy.Persistance;
 
 namespace CarBooksy.Application.Modules.Companies.Commands.Delete;
 
-public interface IDeleteCompanyDataProvider
+internal interface IDeleteCompanyDataProvider
 {
     Task Delete(Guid id, CancellationToken cancellationToken);
 }
 
-public class DeleteCompanyDataProvider(ApplicationDbContext context) : IDeleteCompanyDataProvider
+internal class DeleteCompanyDataProvider(ApplicationDbContext context) : IDeleteCompanyDataProvider
 {
     public async Task Delete(Guid id, CancellationToken cancellationToken)
     {
@@ -17,7 +17,7 @@ public class DeleteCompanyDataProvider(ApplicationDbContext context) : IDeleteCo
             throw new Exception("Company not found");
         }
 
-        company.IsDeleted = true;
+        company.Delete();
         await context.SaveChangesAsync(cancellationToken);
     }
 }

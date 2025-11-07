@@ -16,11 +16,7 @@ public class UpdateCompanyCommandValidator : AbstractValidator<UpdateCompanyComm
             .Length(c => c.MinLengthName, c => c.MaxLengthName)
             .WithMessage(c =>
                 $"Name must be at least {c.MinLengthName} characters long and not exceed {c.MaxLengthName} characters");
-
-        RuleFor(c => c.NIP)
-            .NotEmpty().WithMessage("NIP is required.")
-            .Length(c => c.NIPLength).WithMessage(c => $"NIP must be exactly {c.NIPLength} characters long.");
-
+        
         RuleFor(c => c.Address)
             .NotNull().WithMessage("Address is required.")
             .SetValidator(new AddressValidator());

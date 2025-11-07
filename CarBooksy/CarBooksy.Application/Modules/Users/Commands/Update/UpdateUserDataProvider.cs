@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarBooksy.Application.Modules.Users.Commands.Update;
 
-public interface IUpdateUserDataProvider
+internal interface IUpdateUserDataProvider
 {
     Task Update(UpdateUserCommandBase commandBase, CancellationToken cancellationToken);
 }
 
-public class UpdateUserDataProvider(ApplicationDbContext context) : IUpdateUserDataProvider
+internal class UpdateUserDataProvider(ApplicationDbContext context) : IUpdateUserDataProvider
 {
     public async Task Update(UpdateUserCommandBase commandBase, CancellationToken cancellationToken)
     {

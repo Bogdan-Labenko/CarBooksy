@@ -3,12 +3,12 @@ using CarBooksy.Persistance;
 
 namespace CarBooksy.Application.Modules.Users.Commands.Create;
 
-public interface ICreateUserDataProvider
+internal interface ICreateUserDataProvider
 {
     public Task Add(User user, CancellationToken cancellationToken);
 }
 
-public class CreateUserDataProvider(ApplicationDbContext context) : ICreateUserDataProvider
+internal class CreateUserDataProvider(ApplicationDbContext context) : ICreateUserDataProvider
 {
     public async Task Add(User user, CancellationToken cancellationToken)
     {

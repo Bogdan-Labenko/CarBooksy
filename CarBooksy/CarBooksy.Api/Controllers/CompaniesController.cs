@@ -11,26 +11,20 @@ namespace CarBooksy.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CompaniesController : BaseController
+public class CompaniesController(ISender sender) : BaseController
 {
-    private ISender Sender { get; init; }
-    
-    public CompaniesController(ISender sender)
-    {
-        Sender = sender;
-    }
     
     [HttpPost]
     public async Task<IActionResult> CreateCompany([FromBody]CreateCompanyCommand command)
     {
-        var companyId = await Sender.Send(command);
+        var companyId = await sender.Send(command);
         return Ok(companyId);
     }
 
     [HttpGet("{id:guid}")]
     public async Task<ActionResult> GetCompany([FromRoute] Guid id)
     {
-        var company = await Sender.Send(new GetCompanyByIdQuery(id));
+        var company = await sender.Send(new GetCompanyByIdQuery(id));
         return Ok(company);
     }
     
@@ -38,21 +32,21 @@ public class CompaniesController : BaseController
     [HttpGet]
     public async Task<ActionResult> GetCompanies()
     {
-        var companies = await Sender.Send(new GetAllCompaniesQuery());
+        var companies = await sender.Send(new GetAllCompaniesQuery());
         return Ok(companies);
     }
     
     [HttpDelete("{id:guid}")]
     public async Task<ActionResult> DeleteCompany([FromRoute] Guid id)
     {
-        await Sender.Send(new DeleteCompanyCommand(id));
+        await sender.Send(new DeleteCompanyCommand(id));
         return NoContent();
     }
     
     [HttpPut]
     public async Task<ActionResult> DeleteCompany([FromBody] UpdateCompanyCommand command)
     {
-        await Sender.Send(command);
+        await sender.Send(command);
         return NoContent();
     }
 }

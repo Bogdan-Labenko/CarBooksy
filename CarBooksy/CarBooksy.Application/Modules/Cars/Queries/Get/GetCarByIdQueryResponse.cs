@@ -4,11 +4,11 @@ namespace CarBooksy.Application.Modules.Cars.Queries.Get;
 
 public class GetCarByIdQueryResponse
 {
-    public string Make { get; set; }
-    public string Model { get; set; }
-    public int ProductionYear { get; set; }
-    public string VinCode { get; set; }
-    public string PlateNumber { get; set; }
-    public BodyType BodyType { get; set; }
-    public CarStatus Status { get; set; }
+    public string Make { get; init; }
+    public string Model { get; init; }
+    public int ProductionYear { get; init; }
+    public string VinCode { get; init; }
+    public string PlateNumber { get; init; }
+    public BodyType BodyType { get; init; }
+    public CarStatus Status { get; init; }
 }

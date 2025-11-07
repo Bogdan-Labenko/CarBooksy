@@ -4,7 +4,7 @@ namespace CarBooksy.Application.Modules.Users.Commands.Delete;
 
 public record DeleteUserCommand(Guid Id) : IRequest;
 
-public class DeleteUserHandler(IDeleteUserDataProvider provider) : IRequestHandler<DeleteUserCommand>
+internal class DeleteUserHandler(IDeleteUserDataProvider provider) : IRequestHandler<DeleteUserCommand>
 {
     public Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         => provider.Delete(request.Id);

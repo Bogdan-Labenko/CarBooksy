@@ -5,8 +5,8 @@ namespace CarBooksy.Application.Modules.Companies.Queries.Get;
 
 public class GetCompanyByIdResponse
 {
-    public string Name { get; set; }
-    public Address Address { get; set; }
-    public ContactInfo ContactInfo { get; set; }
-    public string NIP { get; set; }
+    public string Name { get; init; }
+    public Address Address { get; init; }
+    public ContactInfo ContactInfo { get; init; }
+    public string NIP { get; init; }
 }

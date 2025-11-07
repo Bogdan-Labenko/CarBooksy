@@ -6,7 +6,7 @@ namespace CarBooksy.Application.Modules.Companies.Commands.Create;
 
 public class CreateCompanyCommand : CreateCompanyCommandBase, IRequest<Guid>;
 
-public class CreateCompanyHandler(ICreateCompanyDataProvider provider) : IRequestHandler<CreateCompanyCommand, Guid>
+internal class CreateCompanyHandler(ICreateCompanyDataProvider provider) : IRequestHandler<CreateCompanyCommand, Guid>
 {
     public async Task<Guid> Handle(CreateCompanyCommand command, CancellationToken cancellationToken)
     {

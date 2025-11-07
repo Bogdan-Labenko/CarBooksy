@@ -7,10 +7,10 @@ namespace CarBooksy.Domain.Entities;
 
 public class Company : BaseEntity
 {
-    public string Name { get; set; }
-    public Address Address { get; set; }
-    public ContactInfo ContactInfo { get; set; }
-    public string NIP { get; set; }
+    public string Name { get; private set; }
+    public Address Address { get; private set; }
+    public ContactInfo ContactInfo { get; private set; }
+    public string NIP { get; private set; }
 
     private Company(){}
     
@@ -53,6 +53,6 @@ public class Company : BaseEntity
         Name = commandBase.Name;
         Address = commandBase.Address;
         ContactInfo = commandBase.ContactInfo;
-        NIP = commandBase.NIP;
     }
+    public void Delete() { IsDeleted = true; }
 }

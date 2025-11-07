@@ -5,7 +5,7 @@ namespace CarBooksy.Application.Modules.Companies.Commands.Update;
 
 public class UpdateCompanyCommand : UpdateCompanyCommandBase, IRequest;
 
-public class UpdateCompanyHandler(IUpdateCompanyDataProvider provider) : IRequestHandler<UpdateCompanyCommand>
+internal class UpdateCompanyHandler(IUpdateCompanyDataProvider provider) : IRequestHandler<UpdateCompanyCommand>
 {
     public Task Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
         => provider.Update(request, cancellationToken);

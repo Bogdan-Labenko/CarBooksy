@@ -5,14 +5,16 @@ namespace CarBooksy.Domain.Entities;
 
 public class Car : BaseEntity
 {
-    public string Make { get; set; }
-    public string Model { get; set; }
-    public int ProductionYear { get; set; }
-    public string VinCode { get; set; }
-    public string PlateNumber { get; set; }
-    public BodyType BodyType { get; set; }
-    public CarStatus Status { get; set; }
-    public Guid? CompanyId { get; set; }
+    public string Make { get; private set; }
+    public string Model { get; private set; }
+    public int ProductionYear { get; private set; }
+    public string VinCode { get; private set; }
+    public string PlateNumber { get; private set; }
+    public BodyType BodyType { get; private set; }
+    public CarStatus Status { get; private set; }
+    public Guid? CompanyId { get; private set; }
+    
+    private Car() {}
     
     public static Car Create(CreateCarCommandBase commandBase)
     {
@@ -32,7 +34,6 @@ public class Car : BaseEntity
 
     public void Update(UpdateCarCommandBase commandBase)
     {
-        Id = commandBase.Id;
         IsDeleted = false;
         Make = commandBase.Make;
         Model = commandBase.Model;
@@ -42,5 +43,5 @@ public class Car : BaseEntity
         BodyType = commandBase.BodyType; 
         Status = commandBase.Status;
     }
-    private Car() {}
+    public void Delete() { IsDeleted = true; }
 }
