@@ -4,11 +4,11 @@ using CarBooksy.Shared.Models.Companies;
 
 namespace CarBooksy.Application.Modules.Companies.Commands.Create;
 
-internal interface ICreateCompanyDataProvider
+public interface ICreateCompanyDataProvider
 {
     Task Add(Company company, CancellationToken cancellationToken);
 }
-internal class CreateCompanyDataProvider(ApplicationDbContext context) : ICreateCompanyDataProvider
+public class CreateCompanyDataProvider(ApplicationDbContext context) : ICreateCompanyDataProvider
 {
     public async Task Add(Company company, CancellationToken cancellationToken)
     {

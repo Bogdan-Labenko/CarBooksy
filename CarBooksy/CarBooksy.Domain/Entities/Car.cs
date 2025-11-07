@@ -1,9 +1,10 @@
+using CarBooksy.Domain.Common;
 using CarBooksy.Shared.Enums.Cars;
 using CarBooksy.Shared.Models.Cars;
 
 namespace CarBooksy.Domain.Entities;
 
-public class Car : BaseEntity
+public class Car : BaseEntity, IAuditEntity
 {
     public string Make { get; private set; }
     public string Model { get; private set; }
@@ -13,6 +14,11 @@ public class Car : BaseEntity
     public BodyType BodyType { get; private set; }
     public CarStatus Status { get; private set; }
     public Guid? CompanyId { get; private set; }
+    
+    public DateTime CreatedAt { get; set; }
+    public DateTime? ModifiedAt { get; set; }
+    public Guid CreatedBy { get; set; }
+    public Guid? ModifiedBy { get; set; }
     
     private Car() {}
     
@@ -43,5 +49,4 @@ public class Car : BaseEntity
         BodyType = commandBase.BodyType; 
         Status = commandBase.Status;
     }
-    public void Delete() { IsDeleted = true; }
 }

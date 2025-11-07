@@ -5,7 +5,7 @@ namespace CarBooksy.Application.Modules.Users.Commands.Update;
 
 public class UpdateUserCommand : UpdateUserCommandBase, IRequest;
 
-internal class UpdateUserHandler(IUpdateUserDataProvider provider) : IRequestHandler<UpdateUserCommand>
+public class UpdateUserHandler(IUpdateUserDataProvider provider) : IRequestHandler<UpdateUserCommand>
 {
     public async Task Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {

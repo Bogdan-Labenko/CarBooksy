@@ -4,12 +4,12 @@ using CarBooksy.Shared.Models.Cars;
 
 namespace CarBooksy.Application.Modules.Cars.Commands.Update;
 
-internal interface IUpdateCarDataProvider
+public interface IUpdateCarDataProvider
 {
     Task Update(UpdateCarCommandBase commandBase, CancellationToken cancellationToken);
 }
 
-internal class UpdateCarDataProvider(ApplicationDbContext context) : IUpdateCarDataProvider
+public class UpdateCarDataProvider(ApplicationDbContext context) : IUpdateCarDataProvider
 {
     public async Task Update(UpdateCarCommandBase commandBase, CancellationToken cancellationToken)
     {

@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using CarBooksy.Domain.Common;
 using CarBooksy.Shared.Models.Addresses;
 using CarBooksy.Shared.Models.Companies;
 using CarBooksy.Shared.Models.ContactInfos;
@@ -54,5 +55,4 @@ public class Company : BaseEntity
         Address = commandBase.Address;
         ContactInfo = commandBase.ContactInfo;
     }
-    public void Delete() { IsDeleted = true; }
 }

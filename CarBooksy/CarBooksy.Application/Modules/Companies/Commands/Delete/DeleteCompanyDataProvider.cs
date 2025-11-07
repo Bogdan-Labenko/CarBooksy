@@ -2,12 +2,12 @@ using CarBooksy.Persistance;
 
 namespace CarBooksy.Application.Modules.Companies.Commands.Delete;
 
-internal interface IDeleteCompanyDataProvider
+public interface IDeleteCompanyDataProvider
 {
     Task Delete(Guid id, CancellationToken cancellationToken);
 }
 
-internal class DeleteCompanyDataProvider(ApplicationDbContext context) : IDeleteCompanyDataProvider
+public class DeleteCompanyDataProvider(ApplicationDbContext context) : IDeleteCompanyDataProvider
 {
     public async Task Delete(Guid id, CancellationToken cancellationToken)
     {

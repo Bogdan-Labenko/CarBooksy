@@ -7,7 +7,7 @@ namespace CarBooksy.Application.Modules.Cars.Queries.GetMany;
 
 public record GetAllCarsQuery : IRequest<IQueryable<Car>>;
 
-internal class GetAllCarsHandler(ApplicationDbContext context) 
+public class GetAllCarsHandler(ApplicationDbContext context) 
     : IRequestHandler<GetAllCarsQuery, IQueryable<Car>>
 {
     public Task<IQueryable<Car>> Handle(GetAllCarsQuery request, CancellationToken cancellationToken)

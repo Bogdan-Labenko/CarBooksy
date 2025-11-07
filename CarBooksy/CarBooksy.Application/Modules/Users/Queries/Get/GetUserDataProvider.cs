@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarBooksy.Application.Modules.Users.Queries.Get;
 
-internal interface IGetUserDataProvider
+public interface IGetUserDataProvider
 {
     Task<GetUserByIdQueryResponse?> Get(Guid id, CancellationToken cancellationToken);
 }
 
-internal class GetUserDataProvider(ApplicationDbContext context) : IGetUserDataProvider
+public class GetUserDataProvider(ApplicationDbContext context) : IGetUserDataProvider
 {
     public async Task<GetUserByIdQueryResponse?> Get(Guid id, CancellationToken cancellationToken)
         => await context.Users

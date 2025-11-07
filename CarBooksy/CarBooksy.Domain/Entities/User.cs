@@ -1,3 +1,4 @@
+using CarBooksy.Domain.Common;
 using CarBooksy.Shared.Models.ContactInfos;
 using CarBooksy.Shared.Models.Users;
 
@@ -30,5 +31,4 @@ public class User : BaseEntity
         ContactInfo = commandBase.ContactInfo;
         Birthday = commandBase.Birthday;
     }
-    public void Delete() { IsDeleted = true; }
 }

@@ -6,7 +6,7 @@ namespace CarBooksy.Application.Modules.Cars.Commands.Create;
 
 public class CreateCarCommand : CreateCarCommandBase, IRequest<Guid>;
 
-internal class CreateCarHandler(ICreateCarDataProvider provider) : IRequestHandler<CreateCarCommand, Guid>
+public class CreateCarHandler(ICreateCarDataProvider provider) : IRequestHandler<CreateCarCommand, Guid>
 {
     public async Task<Guid> Handle(CreateCarCommand commandBase, CancellationToken cancellationToken)
     {
