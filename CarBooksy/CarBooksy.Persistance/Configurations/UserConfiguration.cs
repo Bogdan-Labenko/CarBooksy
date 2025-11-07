@@ -9,13 +9,15 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
+        builder.Property(u => u.Id)
+            .ValueGeneratedNever();
         builder.Property(u => u.Name)
             .HasMaxLength(UserConstraints.NameMaxLength)
             .IsRequired();
         builder.Property(u => u.LastName)
             .HasMaxLength(UserConstraints.LastNameMaxLength)
             .IsRequired();
-
+        
         builder.OwnsOne(u => u.ContactInfo, ci =>
         {
             ci.Property(c => c.Email)

@@ -1,4 +1,4 @@
-using CarBooksy.Application.Common;
+using CarBooksy.Application.Common.Validation;
 using CarBooksy.Application.Modules.Cars.Commands.Create;
 using CarBooksy.Application.Modules.Cars.Queries.Get;
 using FluentValidation;

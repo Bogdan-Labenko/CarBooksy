@@ -1,4 +1,4 @@
-namespace CarBooksy.Shared.Models;
+namespace CarBooksy.Shared.Models.Addresses;
 
 public sealed class Address
 {

@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CarBooksy.Application.Modules.Cars.Commands.Create;
-public interface ICreateCarDataProvider
+internal interface ICreateCarDataProvider
 {
     ValueTask<EntityEntry<Car>> AddCarAsync(Car car, CancellationToken cancellationToken);
     Task SaveChangesAsync(CancellationToken cancellationToken);
 }
-public class CreateCarDataProvider(ApplicationDbContext context) : ICreateCarDataProvider
+internal class CreateCarDataProvider(ApplicationDbContext context) : ICreateCarDataProvider
 {
     // The method can be sync since AddAsync in ef core is not truly async
     // It is only async when using value generators that require database access

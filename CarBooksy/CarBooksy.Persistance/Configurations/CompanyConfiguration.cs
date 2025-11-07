@@ -9,6 +9,8 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
 {
     public void Configure(EntityTypeBuilder<Company> builder)
     {
+        builder.Property(c => c.Id)
+            .ValueGeneratedNever();
         builder.Property(c => c.Name)
             .HasMaxLength(CompanyConstraints.NameMaxLength)
             .IsRequired();
