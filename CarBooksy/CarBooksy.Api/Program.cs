@@ -8,15 +8,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddApplicationServices()
     .AddPersistanceServices()
-    .AddApiServices();
+    .AddApiServices(builder.Configuration);
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
+/*if (app.Environment.IsDevelopment())
+{*/
     app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    app.UseSwaggerUI(c =>
+    {
+        c.OAuthClientId("SWAGGER_CLIENT_ID");
+        c.OAuthUsePkce();
+    });
+/*}*/
 
 app.UseRouting();
 app.UseAuthorization();

@@ -4,11 +4,13 @@ using CarBooksy.Application.Modules.Companies.Commands.Update;
 using CarBooksy.Application.Modules.Companies.Queries.Get;
 using CarBooksy.Application.Modules.Companies.Queries.GetMany;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 
 namespace CarBooksy.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class CompaniesController(ISender sender) : BaseController
